@@ -603,7 +603,7 @@ void readSRAM_GB() {
 
     // Get name, add extension and convert to char array for sd lib
     strcpy(fileName, romName);
-    strcat(fileName, ".sav");
+    strcat(fileName, ".srm");
 
     // create a new folder for the save file
     foldern = load_dword();
@@ -2210,7 +2210,7 @@ uint8_t gbMenu()
         // Change working dir to root
         f_chdir("/");
         filePath[0] = '\0';
-        fileBrowser("/","Select sav file");
+        fileBrowser("/","Select save file");
         writeSRAM_GB();
         OledClear();
         unsigned long wrErrors;
