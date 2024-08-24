@@ -1975,7 +1975,7 @@ void TestMemGB(boolean bFast)
 static const char GBFlashItem1[] = "Flash Cart Only";
 static const char GBFlashItem2[] = "Flash Cart and Save";
 static const char GBFlashItem3[] = "HDR Cart (MBC3)";
-static const char GBFlashItem4[] = "InsideGadget (MBC5)";
+static const char GBFlashItem4[] = "29F Cart (MBC5)";
 static const char GBFlashItem5[] = "29F Cart (CAM)";
 
 //static const char GBFlashItem6[] = "GB Smart";
