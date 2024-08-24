@@ -885,7 +885,7 @@ void writeFlash29F_GB(byte MBC, boolean flashErase) {
   // Launch filebrowser
   filePath[0] = '\0';
   f_chdir("/");
-  fileBrowser("/","Select file:");
+  fileBrowser("GB/ROM","Select file:");
   OledClear();
 
   FIL tf;
