@@ -1972,10 +1972,10 @@ void TestMemGB(boolean bFast)
 
 
 // GB Flash items
-static const char GBFlashItem1[] = "Flash Cart";
+static const char GBFlashItem1[] = "Flash Cart Only";
 static const char GBFlashItem2[] = "Flash Cart and Save";
-static const char GBFlashItem3[] = "29F Cart (MBC3)";
-static const char GBFlashItem4[] = "29F Cart (MBC5)";
+static const char GBFlashItem3[] = "HDR Cart (MBC3)";
+static const char GBFlashItem4[] = "InsideGadget (MBC5)";
 static const char GBFlashItem5[] = "29F Cart (CAM)";
 
 //static const char GBFlashItem6[] = "GB Smart";
@@ -2155,10 +2155,10 @@ void gbFlashScreen()
 }
 
 // GB menu items
-static const char GBMenuItem1[] = "Flash GBC Cart";
-static const char GBMenuItem2[] = "Read Rom";
-static const char GBMenuItem3[] = "Read Save";
-static const char GBMenuItem4[] = "Write Save";
+static const char GBMenuItem1[] = "Flash Rom";
+static const char GBMenuItem4[] = "Flash Save";
+static const char GBMenuItem2[] = "Dump Rom";
+static const char GBMenuItem3[] = "Dump Save";
 static const char GBMenuItem5[] = "NPower GB Memory";
 static const char GBMenuItem6[] = "Reset";
 static const char* const menuOptionsGB[] = {GBMenuItem1, GBMenuItem2, GBMenuItem3, GBMenuItem4, GBMenuItem5, GBMenuItem6};
