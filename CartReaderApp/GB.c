@@ -885,7 +885,7 @@ void writeFlash29F_GB(byte MBC, boolean flashErase) {
   // Launch filebrowser
   filePath[0] = '\0';
   f_chdir("/");
-  fileBrowser("GB/ROM","Select file:");
+  fileBrowser("/","Select file:");
   OledClear();
 
   FIL tf;
@@ -2002,7 +2002,7 @@ uint8_t gbFlashMenu()
     case 1:
       // Flash CFI
       // Launch filebrowser
-      fileBrowser("GB/ROM","Select file:");
+      fileBrowser("/","Select file:");
       OledClear();
       identifyCFI_GB();
       if (!writeCFI_GB()) {
@@ -2013,7 +2013,7 @@ uint8_t gbFlashMenu()
 
     case 2:
       // Flash CFI and Save
-      fileBrowser("GB/ROM","Select file:");
+      fileBrowser("/","Select file:");
       OledClear();
       identifyCFI_GB();
       if (!writeCFI_GB()) {
@@ -2189,7 +2189,7 @@ uint8_t gbMenu()
         // Change working dir to root
         f_chdir("/");
         filePath[0] = '\0';
-        fileBrowser("GB/SAVE","Select save file");
+        fileBrowser("/","Select save file");
         writeSRAM_GB();
         OledClear();
         unsigned long wrErrors;
