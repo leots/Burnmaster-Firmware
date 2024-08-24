@@ -2183,27 +2183,6 @@ uint8_t gbMenu()
       break;
     case 2:
       OledClear();
-      // Change working dir to root
-      //f_chdir("/");
-      readROM_GB();
-      compare_checksum_GB();
-      break;
-
-    case 3:
-      OledClear();
-      // Does cartridge have SRAM
-      if (lastByte > 0) {
-      // Change working dir to root
-        f_chdir("/");
-        readSRAM_GB();
-      }
-      else {
-        print_Error("Cart has no Sram", false);
-      }
-      break;
-
-    case 4:
-      OledClear();
       // Does cartridge have SRAM
       if (lastByte > 0) 
       {
@@ -2231,7 +2210,25 @@ uint8_t gbMenu()
         print_Error("Cart has no Sram", false);
       }
       break;
-
+    case 3:
+      OledClear();
+      // Change working dir to root
+      //f_chdir("/");
+      readROM_GB();
+      compare_checksum_GB();
+      break;
+    case 4:
+      OledClear();
+      // Does cartridge have SRAM
+      if (lastByte > 0) {
+      // Change working dir to root
+        f_chdir("/");
+        readSRAM_GB();
+      }
+      else {
+        print_Error("Cart has no Sram", false);
+      }
+      break;
     case 5:
       // Flash GB Memory
       gbmScreen();
