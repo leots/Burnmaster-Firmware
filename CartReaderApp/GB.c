@@ -272,6 +272,13 @@ void getCartInfo_GB()
       myLength++;
     }
   }
+
+  // For the "PHOTO!" ROM, dump the full 1 MB to include all camera rolls (can be imported to various apps)
+  romName[myLength] = '\0'; // Null-terminate string
+  // Check if ROM name is "PHOTO"
+  if (strcmp(romName, "PHOTO") == 0) {
+    romBanks = 64; // 1MB ROM should have 64 banks
+  }
 }
 
 
