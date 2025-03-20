@@ -453,7 +453,8 @@ void readROM_GB() {
   strcat(fileName, ".GB");
 
   // Construct base directory path dynamically
-  char baseFolder[64]; 
+  char baseFolder[64];
+  f_chdir("/");
   sprintf(baseFolder, "GB/ROM/%s/", romName);
 
   // Find the highest existing folder number
