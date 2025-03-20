@@ -452,16 +452,42 @@ void readROM_GB() {
   strcpy(fileName, romName);
   strcat(fileName, ".GB");
 
-  // create a new folder for the rom file
-  foldern = load_dword();
-  f_chdir("/");
-  sprintf(folder, "GB/ROM/%s/%d", romName, foldern);
+  // Construct base directory path dynamically
+  char baseFolder[64]; 
+  sprintf(baseFolder, "GB/ROM/%s/", romName);
 
-  FRESULT rst;
-  FIL tfile;
+  // Find the highest existing folder number
+  foldern = 0;  // Default to 0
+  DIR dir;
+  FILINFO fno;
+  
+  if (f_opendir(&dir, baseFolder) == FR_OK) { 
+      while (f_readdir(&dir, &fno) == FR_OK && fno.fname[0]) { 
+          int num = atoi(fno.fname);  // Convert folder name to integer
+          if (num > foldern) {
+              foldern = num;
+          }
+      }
+      f_closedir(&dir);
+  }
+  
+  foldern += 1;  // Use the next available number
 
-  rst = my_mkdir(folder);
+  // Create folder for the ROM dump
+  sprintf(folder, "%s%d", baseFolder, foldern);
+  FRESULT rst = my_mkdir(folder);
   rst = f_chdir(folder);
+
+  // create a new folder for the rom file
+  //foldern = load_dword();
+  //f_chdir("/");
+  //sprintf(folder, "GB/ROM/%s/%d", romName, foldern);
+
+  // FRESULT rst;
+  // FIL tfile;
+
+  // rst = my_mkdir(folder);
+  // rst = f_chdir(folder);
 
   OledClear();
   OledShowString(0,0,"Saving to ",8);
@@ -469,8 +495,8 @@ void readROM_GB() {
   //printf("/..."));
 
   // write new folder number back to eeprom
-  foldern = foldern + 1;
-  save_dword(foldern);
+  // foldern = foldern + 1;
+  // save_dword(foldern);
 
   //open file on sd card
   rst = f_open(&tfile,fileName, FA_CREATE_ALWAYS|FA_WRITE);
