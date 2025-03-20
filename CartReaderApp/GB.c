@@ -452,34 +452,8 @@ void readROM_GB() {
   strcpy(fileName, romName);
   strcat(fileName, ".GB");
 
-  // Construct base directory path dynamically
-  char baseFolder[64];
-  f_chdir("/");
-  sprintf(baseFolder, "GB/ROM/%s/", romName);
+  createFolder("GB/ROM", romName, folder);
 
-  // Find the highest existing folder number
-  foldern = 0;  // Default to 0
-  DIR dir;
-  FILINFO fno;
-  
-  if (f_opendir(&dir, baseFolder) == FR_OK) { 
-      while (f_readdir(&dir, &fno) == FR_OK && fno.fname[0]) { 
-          int num = atoi(fno.fname);  // Convert folder name to integer
-          if (num > foldern) {
-              foldern = num;
-          }
-      }
-      f_closedir(&dir);
-  }
-  
-  foldern += 1;  // Use the next available number
-
-  // Create folder for the ROM dump
-  sprintf(folder, "%s%d", baseFolder, foldern);
-  FRESULT rst = my_mkdir(folder);
-  rst = f_chdir(folder);
-
-  // FRESULT rst;
   FIL tfile;
 
   OledClear();
@@ -627,32 +601,7 @@ void readSRAM_GB() {
     strcpy(fileName, romName);
     strcat(fileName, ".srm");
 
-    // Construct base directory path dynamically
-    char baseFolder[64];
-    f_chdir("/");
-    sprintf(baseFolder, "GB/SAVE/%s/", romName);
-
-    // Find the highest existing folder number
-    foldern = 0;  // Default to 0
-    DIR dir;
-    FILINFO fno;
-    
-    if (f_opendir(&dir, baseFolder) == FR_OK) { 
-        while (f_readdir(&dir, &fno) == FR_OK && fno.fname[0]) { 
-            int num = atoi(fno.fname);  // Convert folder name to integer
-            if (num > foldern) {
-                foldern = num;
-            }
-        }
-        f_closedir(&dir);
-    }
-    
-    foldern += 1;  // Use the next available number
-
-    // create a new folder for the save file
-    sprintf(folder, "%s%d", baseFolder, foldern);
-    FRESULT rst = my_mkdir(folder);
-    rst = f_chdir(folder);
+    createFolder("GB/SAVE", romName, folder);
 
     //open file on sd card
     FIL tfile;

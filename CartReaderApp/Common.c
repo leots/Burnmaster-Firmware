@@ -121,3 +121,31 @@ void delayMicroseconds(uint16_t us)
     __asm__("nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t");
   }
 }
+
+FRESULT createFolder(const char *basePath, const char *romName, char *folderPath) {
+  char baseFolder[64];
+  f_chdir("/");
+  sprintf(baseFolder, "%s/%s/", basePath, romName);
+
+  // Find the highest existing folder number
+  int foldern = 0;
+  DIR dir;
+  FILINFO fno;
+
+  if (f_opendir(&dir, baseFolder) == FR_OK) { 
+      while (f_readdir(&dir, &fno) == FR_OK && fno.fname[0]) { 
+          int num = atoi(fno.fname);  // Convert folder name to integer
+          if (num > foldern) {
+              foldern = num;
+          }
+      }
+      f_closedir(&dir);
+  }
+
+  foldern += 1;  // Use the next available number
+
+  // Create folder for the dump
+  sprintf(folderPath, "%s%d", baseFolder, foldern);
+  FRESULT rst = my_mkdir(folderPath);
+  return f_chdir(folderPath);
+}

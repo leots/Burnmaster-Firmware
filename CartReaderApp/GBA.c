@@ -523,20 +523,12 @@ void readROM_GBA()
   strcpy(fileName, romName);
   strcat(fileName, ".gba");
 
-  // create a new folder for the rom file
-  foldern = load_dword();
-  sprintf(folder, "/GBA/ROM/%s/%d", romName, foldern);
-  my_mkdir(folder);
-  f_chdir(folder);
+  createFolder("GBA/ROM", romName, folder);
 
   //clear the screen
   OledClear();
   OledShowString(0,0,"Saving to :",8);
   OledShowString(0,1,folder,8);
-
-  // write new folder number back to eeprom
-  foldern = foldern + 1;
-  save_dword(foldern);
 
   FIL tf;
   //open file on sd card
@@ -639,17 +631,11 @@ void readSRAM_GBA(boolean browseFile, unsigned long sramSize, uint32_t pos)
     strcat(fileName, ".srm");
 
     // create a new folder for the save file
-    foldern = load_dword();
-    sprintf(folder, "GBA/SAVE/%s/%d", romName, foldern);
-    my_mkdir(folder);
-    f_chdir(folder);
+    createFolder("GBA/SAVE", romName, folder);
 
     // Save location
     OledShowString(0,0,"Saving to :",8);
     OledShowString(0,1,folder,8);
-    // write new folder number back to eeprom
-    foldern = foldern + 1;
-    save_dword(foldern);
   }
 
   //open file on sd card
