@@ -484,7 +484,7 @@ void readROM_GB() {
   //sprintf(folder, "GB/ROM/%s/%d", romName, foldern);
 
   // FRESULT rst;
-  // FIL tfile;
+  FIL tfile;
 
   // rst = my_mkdir(folder);
   // rst = f_chdir(folder);
