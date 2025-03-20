@@ -452,7 +452,7 @@ void readROM_GB() {
   strcpy(fileName, romName);
   strcat(fileName, ".GB");
 
-  createFolder("GB/ROM", romName, folder);
+  FRESULT rst = createFolder("GB/ROM", romName, folder);
 
   FIL tfile;
 
